@@ -21,8 +21,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageIconUrl />
-		<Description>Example implementation of Analogy Log Viewer Data Provider</Description>
-		<PackageReleaseNotes>Example implementation of Analogy Log Viewer Data Provider</PackageReleaseNotes>
+		<Description>Implementation of Analogy Log Viewer Data Provider for reading sql lite db files</Description>
+		<PackageReleaseNotes>Implementation of Analogy Log Viewer Data Provider for reading sql lite db files</PackageReleaseNotes>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
