@@ -89,9 +89,10 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
                             var key = dtData.Columns[i].ColumnName;
                             var itm = entry.ItemArray[i];
                             m.AdditionalInformation.Add(key, itm.ToString());
-                            messagesHandler.AppendMessage(m, fileName);
                         }
                         messages.Add(m);
+                        messagesHandler.AppendMessage(m, fileName);
+
                     }
 
                     return messages;
