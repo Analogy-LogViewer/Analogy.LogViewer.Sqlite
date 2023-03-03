@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Analogy.Interfaces;
 using Analogy.LogViewer.Sqlite.Properties;
+using Analogy.LogViewer.Template.Managers;
 using Microsoft.Data.Sqlite;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
@@ -26,12 +27,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
         public override IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
             => Array.Empty<(string, string)>();
 
-        public override (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
-            => (Color.Empty, Color.Empty);
-        public SqliteBroswerDataProvider()
-        {
-        }
-
+        
         public override Task InitializeDataProvider(IAnalogyLogger logger)
         {
             //do some initialization for this provider
@@ -103,33 +99,11 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
 
                 catch (Exception e)
                 {
-
+                    LogManager.Instance.LogException($"error:{e.Message}", e, "");
                 }
 
                 return new List<AnalogyLogMessage>(0);
             }
         }
-
-        protected override List<FileInfo> GetSupportedFilesInternal(DirectoryInfo dirInfo, bool recursive)
-        {
-            return base.GetSupportedFilesInternal(dirInfo, recursive);
-        }
-
-        public override Task SaveAsync(List<AnalogyLogMessage> messages, string fileName)
-        {
-            return Task.CompletedTask;
-        }
-
-        public override bool CanOpenFile(string fileName)
-        {
-            return false;
-        }
-
-        public override bool CanOpenAllFiles(IEnumerable<string> fileNames)
-        {
-            return fileNames.All(CanOpenFile);
-        }
-
-
     }
 }
