@@ -14,6 +14,7 @@
 <a href="https://github.com/Analogy-LogViewer/Analogy.LogViewer.Sqlite/blob/main/LICENSE.md">
     <img src="https://img.shields.io/github/license/Analogy-LogViewer/Analogy.LogViewer.Sqlite"  alt="License" />
 </a>
+ [![Nuget](https://img.shields.io/nuget/v/Analogy.LogViewer.Sqlite)](https://www.nuget.org/packages/Analogy.LogViewer.Sqlite/)
 <a href="https://github.com/Analogy-LogViewer/Analogy.LogViewer.Sqlite/releases">
     <img src="https://img.shields.io/github/v/release/Analogy-LogViewer/Analogy.LogViewer.Sqlite"  alt="Latest Release" />
 </a>
