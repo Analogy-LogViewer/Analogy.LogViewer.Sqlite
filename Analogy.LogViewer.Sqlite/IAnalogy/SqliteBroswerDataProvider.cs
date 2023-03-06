@@ -34,12 +34,12 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
             return base.InitializeDataProvider(logger);
         }
 
-        public override void MessageOpened(AnalogyLogMessage message)
+        public override void MessageOpened(IAnalogyLogMessage message)
         {
             //nop
         }
 
-        public override async Task<IEnumerable<AnalogyLogMessage>> Process(string fileName, CancellationToken token, ILogMessageCreatedHandler messagesHandler)
+        public override async Task<IEnumerable<IAnalogyLogMessage>> Process(string fileName, CancellationToken token, ILogMessageCreatedHandler messagesHandler)
         {
             using (var conn = new SqliteConnection($"Data Source={fileName};Mode=readonly"))
             {
@@ -78,17 +78,16 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
                             dtData.Load(reader);
                         }
                     }
-                    var messages = new List<AnalogyLogMessage>();
+                    var messages = new List<IAnalogyLogMessage>();
                     foreach (DataRow entry in dtData.Rows)
                     {
                         AnalogyLogMessage m = new AnalogyLogMessage();
                         m.Source = dtData.TableName;
-                        m.AdditionalInformation = new Dictionary<string, string>();
                         for (var i = 0; i < entry.ItemArray.Length; i++)
                         {
                             var key = dtData.Columns[i].ColumnName;
                             var itm = entry.ItemArray[i];
-                            m.AdditionalInformation.Add(key, itm.ToString());
+                            m.AddOrReplaceAdditionalProperty(key, itm.ToString());
                         }
                         messages.Add(m);
                         messagesHandler.AppendMessage(m, fileName);
@@ -103,7 +102,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
                     LogManager.Instance.LogException($"error:{e.Message}", e, "");
                 }
 
-                return new List<AnalogyLogMessage>(0);
+                return new List<IAnalogyLogMessage>(0);
             }
         }
     }
