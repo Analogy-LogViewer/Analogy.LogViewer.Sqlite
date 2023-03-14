@@ -12,7 +12,6 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
 
         public override IEnumerable<IAnalogyDataProvider> DataProviders { get; set; } = new List<IAnalogyDataProvider>
         {
-            //add 2 "real time data providers"
             new SqliteBroswerDataProvider(),
         };
     }
