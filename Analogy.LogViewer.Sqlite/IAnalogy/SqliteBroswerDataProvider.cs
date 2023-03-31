@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Analogy.Interfaces;
@@ -34,23 +32,23 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
             return base.InitializeDataProvider(logger);
         }
 
-        public override IEnumerable<string> HideColumns()
+        public override IEnumerable<AnalogyLogMessagePropertyName> HideExistingColumns()
         {
-            yield return AnalogyLogMessagePropertyName.Date.ToString();
-            yield return AnalogyLogMessagePropertyName.Text.ToString();
-            yield return AnalogyLogMessagePropertyName.Level.ToString();
-            yield return AnalogyLogMessagePropertyName.Class.ToString();
-            yield return AnalogyLogMessagePropertyName.Source.ToString();
-            yield return AnalogyLogMessagePropertyName.User.ToString();
-            yield return AnalogyLogMessagePropertyName.Class.ToString();
-            yield return AnalogyLogMessagePropertyName.ProcessId.ToString();
-            yield return AnalogyLogMessagePropertyName.ThreadId.ToString();
-            yield return AnalogyLogMessagePropertyName.MachineName.ToString(); 
-            yield return AnalogyLogMessagePropertyName.MethodName.ToString();
-            yield return AnalogyLogMessagePropertyName.LineNumber.ToString();
-            yield return AnalogyLogMessagePropertyName.RawText.ToString();
-            yield return AnalogyLogMessagePropertyName.RawTextType.ToString();
-            yield return AnalogyLogMessagePropertyName.Id.ToString();
+            yield return AnalogyLogMessagePropertyName.Date;
+            yield return AnalogyLogMessagePropertyName.Text;
+            yield return AnalogyLogMessagePropertyName.Level;
+            yield return AnalogyLogMessagePropertyName.Class;
+            yield return AnalogyLogMessagePropertyName.Source;
+            yield return AnalogyLogMessagePropertyName.User;
+            yield return AnalogyLogMessagePropertyName.Class;
+            yield return AnalogyLogMessagePropertyName.ProcessId;
+            yield return AnalogyLogMessagePropertyName.ThreadId;
+            yield return AnalogyLogMessagePropertyName.MachineName; 
+            yield return AnalogyLogMessagePropertyName.MethodName;
+            yield return AnalogyLogMessagePropertyName.LineNumber;
+            yield return AnalogyLogMessagePropertyName.RawText;
+            yield return AnalogyLogMessagePropertyName.RawTextType;
+            yield return AnalogyLogMessagePropertyName.Id;
         }
 
 
