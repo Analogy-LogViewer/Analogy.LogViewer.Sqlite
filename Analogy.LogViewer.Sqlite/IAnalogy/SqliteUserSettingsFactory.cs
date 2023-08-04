@@ -6,6 +6,7 @@ using Analogy.Interfaces;
 using Analogy.Interfaces.DataTypes;
 using Analogy.LogViewer.Sqlite.Properties;
 using Analogy.LogViewer.Template;
+using Microsoft.Extensions.Logging;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {
@@ -22,7 +23,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
         public override AnalogyToolTip? ToolTip { get; set; } = new AnalogyToolTip("Sqlite dB", "",
             "", Resources.Analogy_image_16x16, Resources.Analogy_image_32x32);
 
-        public override void CreateUserControl(IAnalogyLogger logger)
+        public override void CreateUserControl(ILogger logger)
         {
             DataProviderSettings = new UserControl();
         }

@@ -17,7 +17,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
 
         public override IEnumerable<IAnalogyChangeLog> ChangeLog { get; set; } = new List<AnalogyChangeLog>
         {
-            new AnalogyChangeLog("Initial version",AnalogChangeLogType.None, "Lior Banai",new DateTime(2023, 03, 03))
+            new AnalogyChangeLog("Initial version",AnalogChangeLogType.None, "Lior Banai",new DateTime(2023, 03, 03), "")
         };
         public override IEnumerable<string> Contributors { get; set; } = new List<string> { "Lior Banai" };
         public override string About { get; set; } = "Analogy Sqlite Data Provider";

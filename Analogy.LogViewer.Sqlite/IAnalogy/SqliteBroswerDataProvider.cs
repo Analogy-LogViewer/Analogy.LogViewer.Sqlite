@@ -9,6 +9,7 @@ using Analogy.Interfaces;
 using Analogy.LogViewer.Sqlite.Properties;
 using Analogy.LogViewer.Template.Managers;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Logging;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {
@@ -26,7 +27,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
             => Array.Empty<(string, string)>();
 
         
-        public override Task InitializeDataProvider(IAnalogyLogger logger)
+        public override Task InitializeDataProvider(ILogger logger)
         {
             //do some initialization for this provider
             return base.InitializeDataProvider(logger);
@@ -117,7 +118,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
 
                 catch (Exception e)
                 {
-                    LogManager.Instance.LogException($"error:{e.Message}", e, "");
+                    LogManager.Instance.LogError(e, $"error:{e.Message}", e);
                 }
 
                 return new List<IAnalogyLogMessage>(0);
