@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Analogy.Interfaces;
+﻿using Analogy.Interfaces;
 using Analogy.LogViewer.Template;
+using System;
+using System.Collections.Generic;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {

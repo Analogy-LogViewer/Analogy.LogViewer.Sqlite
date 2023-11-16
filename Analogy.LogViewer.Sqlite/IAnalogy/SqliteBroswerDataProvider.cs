@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Analogy.Interfaces;
+using Analogy.LogViewer.Sqlite.Properties;
+using Analogy.LogViewer.Template.Managers;
+using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
-using Analogy.Interfaces;
-using Analogy.LogViewer.Sqlite.Properties;
-using Analogy.LogViewer.Template.Managers;
-using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Logging;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {
@@ -23,10 +23,9 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
         public override string FileOpenDialogFilters { get; set; } = "sqlite db file (*.db)|*.db";
         public override IEnumerable<string> SupportFormats { get; set; } = new[] { "*.db" };
         public override string? InitialFolderFullPath { get; set; } = Environment.CurrentDirectory;
-        public override IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
+        public override IEnumerable<(string OriginalHeader, string ReplacementHeader)> GetReplacementHeaders()
             => Array.Empty<(string, string)>();
 
-        
         public override Task InitializeDataProvider(ILogger logger)
         {
             //do some initialization for this provider
@@ -52,7 +51,6 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
             yield return AnalogyLogMessagePropertyName.Id;
         }
 
-
         public override void MessageOpened(IAnalogyLogMessage message)
         {
             //nop
@@ -63,6 +61,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
             using (var conn = new SqliteConnection($"Data Source={fileName};Mode=readonly"))
             {
                 await conn.OpenAsync(token);
+                
                 // executes query that select names of all tables in master table of the database
                 string query = "SELECT name FROM sqlite_master " +
                                "WHERE type = 'table'" +
@@ -77,9 +76,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
                         {
                             dt.Load(rdr);
                         }
-
                     }
-
                     DataTable dtData = new DataTable();
                     foreach (DataRow row in dt.Rows)
                     {
@@ -110,9 +107,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
                         }
                         messages.Add(m);
                         messagesHandler.AppendMessage(m, fileName);
-
                     }
-
                     return messages;
                 }
 

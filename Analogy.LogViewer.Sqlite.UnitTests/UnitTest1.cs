@@ -1,11 +1,11 @@
+using Analogy.LogViewer.Sqlite.IAnalogy;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Analogy.LogViewer.Sqlite.IAnalogy;
-using Microsoft.Extensions.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Analogy.LogViewer.Sqlite.UnitTests
 {
