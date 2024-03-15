@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -43,7 +44,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
             yield return AnalogyLogMessagePropertyName.Class;
             yield return AnalogyLogMessagePropertyName.ProcessId;
             yield return AnalogyLogMessagePropertyName.ThreadId;
-            yield return AnalogyLogMessagePropertyName.MachineName; 
+            yield return AnalogyLogMessagePropertyName.MachineName;
             yield return AnalogyLogMessagePropertyName.MethodName;
             yield return AnalogyLogMessagePropertyName.LineNumber;
             yield return AnalogyLogMessagePropertyName.RawText;
@@ -61,24 +62,25 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
             using (var conn = new SqliteConnection($"Data Source={fileName};Mode=readonly"))
             {
                 await conn.OpenAsync(token);
-                
+
                 // executes query that select names of all tables in master table of the database
                 string query = "SELECT name FROM sqlite_master " +
                                "WHERE type = 'table'" +
                                "ORDER BY 1";
 
-                try
+                var messages = new List<IAnalogyLogMessage>();
+                DataTable dt = new DataTable();
+                using (SqliteCommand cmd = new SqliteCommand(query, conn))
                 {
-                    DataTable dt = new DataTable();
-                    using (SqliteCommand cmd = new SqliteCommand(query, conn))
+                    using (SqliteDataReader rdr = await cmd.ExecuteReaderAsync(token))
                     {
-                        using (SqliteDataReader rdr = await cmd.ExecuteReaderAsync(token))
-                        {
-                            dt.Load(rdr);
-                        }
+                        dt.Load(rdr);
                     }
+                }
+                foreach (DataRow row in dt.Rows)
+                {
                     DataTable dtData = new DataTable();
-                    foreach (DataRow row in dt.Rows)
+                    try
                     {
                         string dataQuery = "SELECT * FROM " + row.ItemArray[0];
                         using SqliteCommand cmd = new SqliteCommand(dataQuery, conn);
@@ -93,30 +95,31 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
 
                             dtData.Load(reader);
                         }
-                    }
-                    var messages = new List<IAnalogyLogMessage>();
-                    foreach (DataRow entry in dtData.Rows)
-                    {
-                        AnalogyLogMessage m = new AnalogyLogMessage();
-                        m.Source = dtData.TableName;
-                        for (var i = 0; i < entry.ItemArray.Length; i++)
+                        foreach (DataRow entry in dtData.Rows)
                         {
-                            var key = dtData.Columns[i].ColumnName;
-                            var itm = entry.ItemArray[i];
-                            m.AddOrReplaceAdditionalProperty(key, itm.ToString());
+                            AnalogyLogMessage m = new AnalogyLogMessage();
+                            m.Source = $"Table: {dtData.TableName}";
+                            StringBuilder sb = new StringBuilder(entry.ItemArray.Length);
+                            for (var i = 0; i < entry.ItemArray.Length; i++)
+                            {
+                                var key = dtData.Columns[i].ColumnName;
+                                var itm = entry.ItemArray[i];
+                                sb.AppendLine($"{key}: {itm}");
+                                m.AddOrReplaceAdditionalProperty(key, itm.ToString());
+                            }
+
+                            m.Text = sb.ToString();
+                            messages.Add(m);
+                            messagesHandler.AppendMessage(m, fileName);
                         }
-                        messages.Add(m);
-                        messagesHandler.AppendMessage(m, fileName);
                     }
-                    return messages;
+                    catch (Exception e)
+                    {
+                        LogManager.Instance.LogError(e, $"error:{e.Message}", e);
+                    }
                 }
 
-                catch (Exception e)
-                {
-                    LogManager.Instance.LogError(e, $"error:{e.Message}", e);
-                }
-
-                return new List<IAnalogyLogMessage>(0);
+                return messages;
             }
         }
     }

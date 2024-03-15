@@ -22,7 +22,7 @@ namespace Analogy.LogViewer.Sqlite.UnitTests
             SqliteBroswerDataProvider reader = new SqliteBroswerDataProvider();
             LoggerFactory factory = new LoggerFactory();
             Microsoft.Extensions.Logging.ILogger logger = factory.CreateLogger("test");
-            await reader.InitializeDataProvider(null);
+            await reader.InitializeDataProvider(logger);
             var messages = (await reader.Process(fileName, cts.Token, forTesting)).ToList();
             Assert.IsTrue(messages.Count == 389);
         }
