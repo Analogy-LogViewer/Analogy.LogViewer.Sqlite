@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-windows;net7.0-windows;net6.0-windows;net48;net471</TargetFrameworks>
-		<Version>0.7.1</Version>
+		<TargetFrameworks>net8.0-windows;net6.0-windows;net48</TargetFrameworks>
+		<Version>0.8.0</Version>
 		<Authors>Lior Banai</Authors>
 		<Company>Analogy.LogViewer</Company>
 		<Product>Analogy.LogViewer.Sqlite</Product>
@@ -15,11 +15,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="6.0.0.1" />
-		<PackageReference Include="Analogy.CommonUtilities" Version="6.0.0" />
-		<PackageReference Include="Analogy.LogViewer.Template" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.5" />
-		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.5" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="7.0.0.1" />
+		<PackageReference Include="Analogy.CommonUtilities" Version="7.0.0" />
+		<PackageReference Include="Analogy.LogViewer.Template" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.8" />
 		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
 	</ItemGroup>
 	<ItemGroup>
