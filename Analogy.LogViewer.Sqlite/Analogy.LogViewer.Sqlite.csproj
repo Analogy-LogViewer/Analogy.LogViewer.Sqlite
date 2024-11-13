@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-windows;net6.0-windows;net48</TargetFrameworks>
-		<Version>0.8.0</Version>
+		<TargetFrameworks>net9.0-windows;net8.0-windows;net48</TargetFrameworks>
+		<Version>0.9.0</Version>
 		<Authors>Lior Banai</Authors>
 		<Company>Analogy.LogViewer</Company>
 		<Product>Analogy.LogViewer.Sqlite</Product>
 		<PackageId>Analogy.LogViewer.Sqlite</PackageId>
-		<Copyright>Lior Banai © 2023-2024</Copyright>
+		<Copyright>Lior Banai 2023-2025</Copyright>
 		<PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.Sqlite</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.Sqlite</RepositoryUrl>
 		<PackageIcon>icon.png</PackageIcon>
@@ -15,12 +15,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="7.0.0.1" />
-		<PackageReference Include="Analogy.CommonUtilities" Version="7.0.0" />
-		<PackageReference Include="Analogy.LogViewer.Template" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
-		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.8" />
-		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="7.1.0" />
+		<PackageReference Include="Analogy.CommonUtilities" Version="7.1.0" />
+		<PackageReference Include="Analogy.LogViewer.Template" Version="7.1.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="9.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\icon.png">
