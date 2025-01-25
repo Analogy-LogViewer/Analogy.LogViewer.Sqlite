@@ -1,4 +1,5 @@
 ﻿using Analogy.Interfaces;
+using Analogy.Interfaces.DataTypes;
 using Analogy.LogViewer.Sqlite.Properties;
 using Analogy.LogViewer.Template.Managers;
 using Microsoft.Data.Sqlite;
