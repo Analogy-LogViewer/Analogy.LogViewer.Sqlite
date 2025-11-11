@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {
-    public class SqliteBroswerDataProvider : Template.OfflineDataProvider
+    public class SqliteBroswerDataProvider : Template.OfflineDataProviderWinForms
     {
         public override Guid Id { get; set; } = new Guid("25b2b926-47f8-4f13-8db8-0803f8829eba");
         public override Image? LargeImage { get; set; } = Resources.Analogy_image_32x32;
@@ -26,7 +26,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
         public override IEnumerable<string> SupportFormats { get; set; } = new[] { "*.db" };
         public override string? InitialFolderFullPath { get; set; } = Environment.CurrentDirectory;
         public override IEnumerable<(string OriginalHeader, string ReplacementHeader)> GetReplacementHeaders()
-            => Array.Empty<(string, string)>();
+            => [];
 
         public override Task InitializeDataProvider(ILogger logger)
         {

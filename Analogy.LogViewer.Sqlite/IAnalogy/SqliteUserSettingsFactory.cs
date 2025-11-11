@@ -1,5 +1,6 @@
 ﻿using Analogy.Interfaces;
 using Analogy.Interfaces.DataTypes;
+using Analogy.Interfaces.WinForms.DataTypes;
 using Analogy.LogViewer.Sqlite.Properties;
 using Analogy.LogViewer.Template;
 using Microsoft.Extensions.Logging;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {
-    public class SqliteUserSettingsFactory : TemplateUserSettingsFactory
+    public class SqliteUserSettingsFactory : TemplateUserSettingsFactoryWinForms
     {
         public override Guid FactoryId { get; set; } = PrimaryFactory.Id;
         public override Guid Id { get; set; } = new Guid("113ebf43-3290-4fe3-82bc-5ccc79b67706");
@@ -19,7 +20,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
         public override Image? SmallImage { get; set; } = Resources.Analogy_image_16x16;
         public override Image? LargeImage { get; set; } = Resources.Analogy_image_32x32;
 
-        public override AnalogyToolTip? ToolTip { get; set; } = new AnalogyToolTip("Sqlite dB", "",
+        public override AnalogyToolTipWinForms? ToolTip { get; set; } = new AnalogyToolTipWinForms("Sqlite dB", "",
             "", Resources.Analogy_image_16x16, Resources.Analogy_image_32x32);
 
         public override void CreateUserControl(ILogger logger)

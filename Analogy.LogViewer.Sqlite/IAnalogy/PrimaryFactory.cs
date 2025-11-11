@@ -1,4 +1,5 @@
 ﻿using Analogy.Interfaces;
+using Analogy.Interfaces.DataTypes;
 using Analogy.LogViewer.Sqlite.Properties;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Drawing;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {
-    public class PrimaryFactory : Analogy.LogViewer.Template.PrimaryFactory
+    public class PrimaryFactory : Analogy.LogViewer.Template.PrimaryFactoryWinForms
     {
         internal static readonly Guid Id = new Guid("092e0375-a44a-4067-9a50-b2cbbeaf9ce8");
         public override Guid FactoryId { get; set; } = Id;
