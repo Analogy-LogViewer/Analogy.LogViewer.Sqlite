@@ -2,6 +2,7 @@
 using Analogy.Interfaces.DataTypes;
 using Analogy.LogViewer.Sqlite.Properties;
 using Analogy.LogViewer.Template.Managers;
+using Analogy.LogViewer.Template.WinForms;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Analogy.LogViewer.Sqlite.IAnalogy
 {
-    public class SqliteBroswerDataProvider : Template.OfflineDataProviderWinForms
+    public class SqliteBroswerDataProvider : OfflineDataProviderWinForms
     {
         public override Guid Id { get; set; } = new Guid("25b2b926-47f8-4f13-8db8-0803f8829eba");
         public override Image? LargeImage { get; set; } = Resources.Analogy_image_32x32;

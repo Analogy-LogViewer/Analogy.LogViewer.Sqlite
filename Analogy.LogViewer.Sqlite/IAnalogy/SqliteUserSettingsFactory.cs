@@ -3,6 +3,7 @@ using Analogy.Interfaces.DataTypes;
 using Analogy.Interfaces.WinForms.DataTypes;
 using Analogy.LogViewer.Sqlite.Properties;
 using Analogy.LogViewer.Template;
+using Analogy.LogViewer.Template.WinForms;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Drawing;
@@ -20,7 +21,7 @@ namespace Analogy.LogViewer.Sqlite.IAnalogy
         public override Image? SmallImage { get; set; } = Resources.Analogy_image_16x16;
         public override Image? LargeImage { get; set; } = Resources.Analogy_image_32x32;
 
-        public override AnalogyToolTipWinForms? ToolTip { get; set; } = new AnalogyToolTipWinForms("Sqlite dB", "",
+        public override AnalogyToolTip? ToolTip { get; set; } = new AnalogyToolTipWithImages("Sqlite dB", "",
             "", Resources.Analogy_image_16x16, Resources.Analogy_image_32x32);
 
         public override void CreateUserControl(ILogger logger)
