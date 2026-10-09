@@ -49,6 +49,11 @@
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net48' and '$(RuntimeIdentifier)' == ''">
+		<!-- SQLitePCLRaw 2.1.12 net461 targets still include win-arm even though that binary was removed -->
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	</PropertyGroup>
 	<!-- Analyzers (Roslyn, Meziantou, StyleCop, ...) -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeStyle">
